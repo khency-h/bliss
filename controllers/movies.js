@@ -21,6 +21,11 @@ router.get('/movies/seed', (req, res) => {
 // INDUCES
 
 // Index
+router.get('/movies', (req, res) => {
+    Movie.find({}, (err, movies) => {
+        res.render('index.ejs', { movies });
+    });
+});
 
 // New
 router.get('/movies/new', (req, res) => {
