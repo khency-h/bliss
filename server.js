@@ -1,6 +1,7 @@
 // Dependencies 
 const express = require('express');
 const mongoose = require('mongoose');
+const moviesRouter = require('./controllers/movies');
 
 // Initialize the Express App
 const app = express();
@@ -22,6 +23,9 @@ db.on('disconnected', () => console.log('Disconnected from MongoDB'));
 // Mount Middleware
 // Body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}));
+
+// Must run after other middleware
+app.use(moviesRouter);
 
 // Tell the app to listen on dedicated port
 app.listen(PORT, () => console.log(`Express is listening on port:${PORT}`));
