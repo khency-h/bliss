@@ -39,7 +39,7 @@ router.get('/movies/new', (req, res) => {
 // Create
 router.post('/movies', (req, res) => {
     Movie.create(req.body, (err, createdMovie) => {
-        res.send(createdMovie);
+        res.redirect('/movies');
     });
 });
 
