@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const data = require('../data');
 const Movie = require('../models/movie');
+
+// Seed Route - for development purposes only 
+router.get('/movies/seed', (req, res) => {
+    // This option will reset database and recreate movies
+        Movie.deleteMany({}, (err, results) => {
+            Movie.create(data, (err, movies) => {
+                res.redirect('/movies');
+            });
+        });
+    
+        // Uncomment this option to keep creating duplicates 
+        // Movie.create(data, (err, movies) => {
+        //     res.redirect('/movies');
+        // });
+});
 
 // INDUCES
 
