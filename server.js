@@ -20,6 +20,8 @@ db.on('error', (err) => console.log('An error occurred with MongoDB: ' + err.mes
 db.on('disconnected', () => console.log('Disconnected from MongoDB'));
 
 // Mount Middleware
+// Body parser middleware: give us access to req.body
+app.use(express.urlencoded({extended: true}));
 
 // Tell the app to listen on dedicated port
 app.listen(PORT, () => console.log(`Express is listening on port:${PORT}`));
