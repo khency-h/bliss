@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.title %> </title>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <figure>
+                <img src="<%= movie.movieImg %> " alt="<%= movie.title %>">
+            </figure>
+            <div class="movie-info">
+                <h2><%= movie.title %></h2>
+                <p><%= movie.movieDescription %></p>
+                <p>Price: $<%= movie.price %></p>
+                <p>Qty: <%= movie.qty %></p>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Rent">
+                <input type="button" src="/movies/<%= movie._id %>/edit" value="Edit">
+                <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

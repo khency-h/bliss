@@ -46,5 +46,10 @@ router.post('/movies', (req, res) => {
 // Edit
 
 // Show
+router.get('/movies/:id', (req, res) => {
+    Movie.findById(req.params.id, (err, foundMovie) => {
+        res.render('show.ejs', { movie: foundMovie });
+    });
+});
 
 module.exports = router;
