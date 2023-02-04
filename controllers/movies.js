@@ -40,6 +40,11 @@ router.delete('/movies/:id', (req, res) => {
 });
 
 // Update
+router.put('/movies/:id', (req, res) => {
+    Movie.findByIdAndUpdate(req.params.id, req.body, (err, updatedMovie) => {
+        res.redirect(`/movies/${req.params.id}`);
+    });
+});
 
 // Create
 router.post('/movies', (req, res) => {
@@ -49,6 +54,11 @@ router.post('/movies', (req, res) => {
 });
 
 // Edit
+router.get('/movies/:id/edit', (req, res) => {
+    Movie.findById(req.params.id, (err, foundMovie) => {
+        res.render('edit.ejs', { movie: foundMovie});
+    });
+});
 
 // Show
 router.get('/movies/:id', (req, res) => {
