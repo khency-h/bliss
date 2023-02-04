@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const moviesRouter = require('./controllers/movies');
+const usersRouter = require('./controllers/users');
 const methodOverride = require('method-override');
 
 // Initialize the Express App
@@ -31,6 +32,7 @@ app.use(express.static('public'));
 
 // Must run after other middleware
 app.use(moviesRouter);
+app.use(usersRouter);
 
 // Tell the app to listen on dedicated port
 app.listen(PORT, () => console.log(`Express is listening on port:${PORT}`));
