@@ -27,6 +27,8 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(methodOverride('_method'));
 
+app.use(express.static('public'));
+
 // Must run after other middleware
 app.use(moviesRouter);
 
