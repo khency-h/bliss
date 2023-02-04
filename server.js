@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const moviesRouter = require('./controllers/movies');
+const methodOverride = require('method-override');
 
 // Initialize the Express App
 const app = express();
@@ -23,6 +24,8 @@ db.on('disconnected', () => console.log('Disconnected from MongoDB'));
 // Mount Middleware
 // Body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}));
+
+app.use(methodOverride('_method'));
 
 // Must run after other middleware
 app.use(moviesRouter);
