@@ -8,7 +8,7 @@
 </head>
 <body>
     <%- include('./partials/header') %> 
-    
+
     <div>
         <div class="container">
             <figure>
@@ -17,16 +17,23 @@
             <div class="movie-info">
                 <h2><%= movie.title %></h2>
                 <p><%= movie.movieDescription %></p>
-                <p>Price: $<%= movie.price %></p>
+            </div>
+            
+            <p>Price: $<%= movie.price %></p>
+
+            <% if(movie.qty === 0) { %>
+                <p>Out of Stock</p>
+            <% } else { %>
                 <p>Qty: <%= movie.qty %></p>
-            </div>
-            <div class="buttons">
-                <input type="submit" value="Rent">
-                <a href="/movies/<%= movie._id %>/edit">Edit</a>
-                <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
-                    <input type="submit" value="Delete">
-                </form>
-            </div>
+                <form action="/movies/<%= movie._id %>/rent?_method=PUT&qty=<%= movie.qty - 1 %>" method="POST">
+                    <input type="submit" name="qty" value="Rent">
+                </form> 
+            <% } %>
+             
+            <a href="/movies/<%= movie._id %>/edit">Edit</a>
+            <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete">
+            </form>
         </div>
     </div>
     
