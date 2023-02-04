@@ -33,6 +33,11 @@ router.get('/movies/new', (req, res) => {
 });
 
 // Delete
+router.delete('/movies/:id', (req, res) => {
+    Movie.findByIdAndDelete(req.params.id, (err, data) => {
+        res.redirect('/movies');
+    });
+});
 
 // Update
 
