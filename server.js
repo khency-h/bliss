@@ -1,9 +1,10 @@
 // Dependencies 
 const express = require('express');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+const session = require('express-session');
 const moviesRouter = require('./controllers/movies');
 const usersRouter = require('./controllers/users');
-const methodOverride = require('method-override');
 
 // Initialize the Express App
 const app = express();
@@ -30,13 +31,42 @@ app.use(methodOverride('_method'));
 
 app.use(express.static('public'));
 
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+// custom middleware to inspect session store - for development purpose
+// app.use((req, res, next) => {
+//     console.log(req.session)
+//     next();
+// });
+
+app.use((req, res, next) => {
+    if(req.session.userId) {
+        res.locals.user = req.session.userId
+    } else {
+        res.locals.user = null
+    }
+    next();
+});
+
+// authentication middleware
+function isAuthenticated(req, res, next) {
+    if(!req.session.userId) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
 // Mount Routes
 // Homepage Route
 app.get('/', (req, res) => res.render('home.ejs'));
 
 // Must run after other middleware
-app.use(moviesRouter);
 app.use(usersRouter);
+app.use(isAuthenticated, moviesRouter);
 
 // Tell the app to listen on dedicated port
 app.listen(PORT, () => console.log(`Express is listening on port:${PORT}`));
