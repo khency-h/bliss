@@ -30,6 +30,10 @@ app.use(methodOverride('_method'));
 
 app.use(express.static('public'));
 
+// Mount Routes
+// Homepage Route
+app.get('/', (req, res) => res.render('home.ejs'));
+
 // Must run after other middleware
 app.use(moviesRouter);
 app.use(usersRouter);
