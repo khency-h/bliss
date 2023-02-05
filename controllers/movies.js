@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const Movie = require('../models/movie');
+const cloudinary = require('cloudinary').v2;
 
 // Seed Route - for development purposes only 
 router.get('/movies/seed', (req, res) => {
@@ -55,8 +56,14 @@ router.put('/movies/:id/rent', (req, res) => {
 
 // Create
 router.post('/movies', (req, res) => {
-    Movie.create(req.body, (err, createdMovie) => {
-        res.redirect('/movies');
+    const movieImg = req.files.movieImg;
+    movieImg.mv(`./uploads/${movieImg.name}`);
+
+    cloudinary.uploader.upload(`./uploads/${movieImg.name}`, (err, result) => {
+        req.body.movieImg = result.secure_url;
+        Movie.create(req.body, (err, createdMovie) => {
+            res.redirect('/movies');
+        });
     });
 });
 

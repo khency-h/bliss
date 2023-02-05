@@ -5,6 +5,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const moviesRouter = require('./controllers/movies');
 const usersRouter = require('./controllers/users');
+const fileUpload = require('express-fileupload');
+const cloudinary = require('cloudinary').v2;
 
 // Initialize the Express App
 const app = express();
@@ -13,6 +15,12 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 const DATABASE_URL = process.env.DATABASE_URL;
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 
 // Database Connection + Error/Success + Define Callback Functions 
 mongoose.set('strictQuery', true);
@@ -36,6 +44,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(fileUpload({ createParentPath: true }));
 
 // custom middleware to inspect session store - for development purpose
 // app.use((req, res, next) => {
