@@ -1,28 +1,25 @@
 <header>
     <div class="container">
-        <figure>
-            <img src="../../img/pexels-lucas-pezeta-2398354.jpg" alt="header image">
-        </figure>
-        
         <h1>Bliss</h1>
+        
         <nav>
             <ul>
                 <% if(user) { %>
                     <li>
-                        <a href="/movies">See Movie List</a>
+                        <a class="fcc-btn" href="/movies">See Movie List</a>
                     </li>
                     <li>
-                        <a href="/movies/new">Add Movie</a>
+                        <a class="fcc-btn" href="/movies/new">Add Movie</a>
                     </li>
                     <li>
-                        <a href="/logout">Logout</a>
+                        <a class="fcc-btn" href="/logout">Logout</a>
                     </li>
                 <% } else { %>
                     <li>
-                        <a href="/signup">Sign Up</a>
+                        <a class="fcc-btn" href="/signup">Sign Up</a>
                     </li>
                     <li>
-                        <a href="/login">Login</a>
+                        <a class="fcc-btn" href="/login">Login</a>
                     </li>
                 <% } %>
             </ul>

@@ -5,32 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a New Movie</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <%- include('./partials/header') %> 
 
-    <h2>Add a New Movie</h2>
-    <div class="formStructure">
-        <form action="/movies" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <label>Movie Name:
-                <input type="text" name="title" required>
-            </label>
-            <label>Movie Description:
-                <input type="text" name="movieDescription" required>
-            </label>
-            <label>Movie Image:
-                <input type="file" name="movieImg" required>
-            </label>
-            <label>Price:
-                <input type="text" name="price">
-            </label>
-            <label>Qty:
-                <input type="text" name="qty">
-            </label>
+    <div class="new">
+        <div class="container">
+            <h2>Add a New Movie</h2>
+            <div class="form-structure-new">
+                <form action="/movies" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    <label>Movie Name:
+                        <input type="text" name="title" required>
+                    </label>
+                    <label>Movie Description:
+                        <textarea name="movieDescription" cols="30" rows="10" required></textarea>
+                    </label>
+                    <label>Movie Image:
+                        <input type="file" name="movieImg" required>
+                    </label>
+                    <label>Price:
+                        <input type="text" name="price">
+                    </label>
+                    <label>Qty:
+                        <input type="text" name="qty">
+                    </label>
 
-            <input type="submit" value="Add New Movie">
-        </form>
+                    <input class="purple-btn purple-btn-t purple-btn-d" type="submit" value="Add New Movie">
+                </form>
+            </div>
+        </div>
     </div>
-    
+
 </body>
 </html>

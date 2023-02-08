@@ -5,23 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <%- include('./partials/header') %>
 
-    <h2>Sign Up</h2>
-    <form action="/signup" method="POST">
-        <label>
-            Email: 
-            <input type="email" name="email" required>
-        </label>
-        <label>
-            Password: 
-            <input type="password" name="password" required>
-        </label>
-        
-        <input type="submit" value="Sign Up">
-    </form>
+    <div class="signup">
+        <div class="container">
+            <h2>Sign Up</h2>
+
+            <form class="form-mobile form-tablet" action="/signup" method="POST">
+                <label class="t-label">
+                    Email: 
+                    <input type="email" name="email" required>
+                </label>
+                <label class="t-label">
+                    Password: 
+                    <input type="password" name="password" required>
+                </label>
+                
+                <input class="purple-btn" type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
     
 </body>
 </html>
