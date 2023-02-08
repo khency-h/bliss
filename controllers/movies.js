@@ -47,12 +47,12 @@ router.put('/movies/:id', (req, res) => {
     });
 });
 
-router.put('/movies/:id/rent', (req, res) => {
-    const qty = req.query.qty;
-    Movie.findByIdAndUpdate(req.params.id, { qty: qty }, (err, foundMovie) => {
-        res.redirect(`/movies/${foundMovie._id}`);
-    });
-});
+// router.put('/movies/:id/rent', (req, res) => {
+//     const qty = req.query.qty;
+//     Movie.findByIdAndUpdate(req.params.id, { qty: qty }, (err, foundMovie) => {
+//         res.redirect(`/movies/${foundMovie._id}`);
+//     });
+// });
 
 // Create
 router.post('/movies', (req, res) => {

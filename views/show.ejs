@@ -26,19 +26,22 @@
                 <div>
                     <h2><%= movie.title %></h2>
                     <p class="movie-description-p"><%= movie.movieDescription %></p>
+                    <p>Director: <%= movie.director %> </p>
+                    <p>Cast: <%= movie.cast %> </p>
+                    <p>Opinions: <%= movie.opinions %> </p>
                 </div>
             </div>
-    
-            <p>Price: $<%= movie.price %></p>
 
-            <% if(movie.qty === 0) { %>
-                <p>Out of Stock</p>
-            <% } else { %>
-                <p>Qty: <%= movie.qty %></p>
-                <form action="/movies/<%= movie._id %>/rent?_method=PUT&qty=<%= movie.qty - 1 %>" method="POST">
-                    <input class="purple-btn" type="submit" name="qty" value="Rent">
-                </form> 
-            <% } %>
+            <!-- <p>Price: $<%= movie.price %></p>
+
+                <% if(movie.qty === 0) { %>
+                    <p>Out of Stock</p>
+                <% } else { %>
+                    <p>Qty: <%= movie.qty %></p>
+                    <form action="/movies/<%= movie._id %>/rent?_method=PUT&qty=<%= movie.qty - 1 %>" method="POST">
+                        <input class="purple-btn" type="submit" name="qty" value="Rent">
+                    </form> 
+                <% } %> -->
             
             <a class="purple-btn" href="/movies/<%= movie._id %>/edit">Edit</a>
             <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
